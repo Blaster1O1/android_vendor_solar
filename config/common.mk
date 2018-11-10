@@ -47,44 +47,44 @@ endif
 
 # Backup Tool
 PRODUCT_COPY_FILES += \
-    vendor/lineage/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
-    vendor/lineage/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
-    vendor/lineage/prebuilt/common/bin/50-lineage.sh:system/addon.d/50-lineage.sh \
-    vendor/lineage/prebuilt/common/bin/blacklist:system/addon.d/blacklist
+    vendor/solar/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
+    vendor/solar/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
+    vendor/solar/prebuilt/common/bin/50-lineage.sh:system/addon.d/50-lineage.sh \
+    vendor/solar/prebuilt/common/bin/blacklist:system/addon.d/blacklist
 
 ifeq ($(AB_OTA_UPDATER),true)
 PRODUCT_COPY_FILES += \
-    vendor/lineage/prebuilt/common/bin/backuptool_ab.sh:system/bin/backuptool_ab.sh \
-    vendor/lineage/prebuilt/common/bin/backuptool_ab.functions:system/bin/backuptool_ab.functions \
-    vendor/lineage/prebuilt/common/bin/backuptool_postinstall.sh:system/bin/backuptool_postinstall.sh
+    vendor/solar/prebuilt/common/bin/backuptool_ab.sh:system/bin/backuptool_ab.sh \
+    vendor/solar/prebuilt/common/bin/backuptool_ab.functions:system/bin/backuptool_ab.functions \
+    vendor/solar/prebuilt/common/bin/backuptool_postinstall.sh:system/bin/backuptool_postinstall.sh
 endif
 
 # Backup Services whitelist
 PRODUCT_COPY_FILES += \
-    vendor/lineage/config/permissions/backup.xml:system/etc/sysconfig/backup.xml
+    vendor/solar/config/permissions/backup.xml:system/etc/sysconfig/backup.xml
 
 # Lineage-specific broadcast actions whitelist
 PRODUCT_COPY_FILES += \
-    vendor/lineage/config/permissions/lineage-sysconfig.xml:system/etc/sysconfig/lineage-sysconfig.xml
+    vendor/solar/config/permissions/lineage-sysconfig.xml:system/etc/sysconfig/lineage-sysconfig.xml
 
 # init.d support
 PRODUCT_COPY_FILES += \
-    vendor/lineage/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
-    vendor/lineage/prebuilt/common/bin/sysinit:system/bin/sysinit
+    vendor/solar/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
+    vendor/solar/prebuilt/common/bin/sysinit:system/bin/sysinit
 
 ifneq ($(TARGET_BUILD_VARIANT),user)
 # userinit support
 PRODUCT_COPY_FILES += \
-    vendor/lineage/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
+    vendor/solar/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
 endif
 
 # Copy all Lineage-specific init rc files
-$(foreach f,$(wildcard vendor/lineage/prebuilt/common/etc/init/*.rc),\
+$(foreach f,$(wildcard vendor/solar/prebuilt/common/etc/init/*.rc),\
 	$(eval PRODUCT_COPY_FILES += $(f):system/etc/init/$(notdir $f)))
 
 # Copy over added mimetype supported in libcore.net.MimeUtils
 PRODUCT_COPY_FILES += \
-    vendor/lineage/prebuilt/common/lib/content-types.properties:system/lib/content-types.properties
+    vendor/solar/prebuilt/common/lib/content-types.properties:system/lib/content-types.properties
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
@@ -96,24 +96,24 @@ PRODUCT_COPY_FILES += \
 
 # This is Lineage!
 PRODUCT_COPY_FILES += \
-    vendor/lineage/config/permissions/org.lineageos.android.xml:system/etc/permissions/org.lineageos.android.xml \
-    vendor/lineage/config/permissions/privapp-permissions-lineage.xml:system/etc/permissions/privapp-permissions-lineage.xml
+    vendor/solar/config/permissions/org.lineageos.android.xml:system/etc/permissions/org.lineageos.android.xml \
+    vendor/solar/config/permissions/privapp-permissions-lineage.xml:system/etc/permissions/privapp-permissions-lineage.xml
 
 # Hidden API whitelist
 PRODUCT_COPY_FILES += \
-    vendor/lineage/config/permissions/lineage-hiddenapi-package-whitelist.xml:system/etc/permissions/lineage-hiddenapi-package-whitelist.xml
+    vendor/solar/config/permissions/lineage-hiddenapi-package-whitelist.xml:system/etc/permissions/lineage-hiddenapi-package-whitelist.xml
 
 # Include Lineage audio files
-include vendor/lineage/config/lineage_audio.mk
+include vendor/solar/config/lineage_audio.mk
 
 ifneq ($(TARGET_DISABLE_LINEAGE_SDK), true)
 # Lineage SDK
-include vendor/lineage/config/lineage_sdk_common.mk
+include vendor/solar/config/lineage_sdk_common.mk
 endif
 
 # TWRP
 ifeq ($(WITH_TWRP),true)
-include vendor/lineage/config/twrp.mk
+include vendor/solar/config/twrp.mk
 endif
 
 # Bootanimation
@@ -247,8 +247,8 @@ PRODUCT_PACKAGES += \
 endif
 endif
 
-PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/lineage/overlay
-DEVICE_PACKAGE_OVERLAYS += vendor/lineage/overlay/common
+PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/solar/overlay
+DEVICE_PACKAGE_OVERLAYS += vendor/solar/overlay/common
 
 PRODUCT_VERSION_MAJOR = 16
 PRODUCT_VERSION_MINOR = 0
@@ -339,9 +339,9 @@ else
 endif
 
 PRODUCT_EXTRA_RECOVERY_KEYS += \
-    vendor/lineage/build/target/product/security/lineage
+    vendor/solar/build/target/product/security/lineage
 
--include vendor/lineage-priv/keys/keys.mk
+-include vendor/solar-priv/keys/keys.mk
 
 LINEAGE_DISPLAY_VERSION := $(LINEAGE_VERSION)
 
@@ -369,4 +369,4 @@ endif
 endif
 
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
--include vendor/lineage/config/partner_gms.mk
+-include vendor/solar/config/partner_gms.mk
