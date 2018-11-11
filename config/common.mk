@@ -126,6 +126,12 @@ PRODUCT_PACKAGES += \
     Development \
     Profiles
 
+# Required Solar packages
+PRODUCT_PACKAGES += \
+    PixelLauncher \
+    PixelBridge \
+    Via
+
 # Optional packages
 PRODUCT_PACKAGES += \
     libemoji \
@@ -147,7 +153,6 @@ PRODUCT_PACKAGES += \
     ExactCalculator \
     Jelly \
     LockClock \
-    Trebuchet \
     Updater \
     WallpaperPicker \
     WeatherProvider
